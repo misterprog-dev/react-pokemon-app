@@ -30,7 +30,7 @@ export default class PokemonService {
 
     static createPokemon(pokemon: Pokemon): Promise<Pokemon> {
         delete pokemon.created;
-        
+
         return fetch(`${PokemonService.baseURL}/`, {
             method: 'POST',
             body: JSON.stringify(pokemon),
@@ -51,6 +51,12 @@ export default class PokemonService {
         })
         .then(response => response.json())
         .catch(this.handleError)
+    }
+
+    static searchPokemon(term: string): Promise<Pokemon[]> {
+        return fetch(`${PokemonService.baseURL}?q=${term}`)
+        .then(response => response.json())
+        .catch(this.handleError);
     }
 
     static isEmpty(data: Object): boolean {

@@ -20,7 +20,7 @@ const App: FunctionComponent = () => {
                     <Route exact path="/" component={PokemonList}/>
                     <Route exact path="/pokemons" component={PokemonList}/>
                     <Route path="/pokemons/:id" component={PokemonsDetail} />
-                    <Route exact path="/pokemons/edit/:id" component={PokemonEdit} />
+                    <Route exact path="/pokemon/edit/:id" component={PokemonEdit} />
                     <Route exact path="/pokemon/create" component={PokemonCreate} />
                     <Route path="*" component={PageNotFound}/>
                 </Switch>

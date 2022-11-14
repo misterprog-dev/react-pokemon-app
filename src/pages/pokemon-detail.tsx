@@ -4,6 +4,7 @@ import Pokemon from '../models/pokemon';
 import formatDate from '../helpers/format-date';
 import formatType from '../helpers/format-type';
 import PokemonService from '../services/pokemon-service';
+import Loader from '../components/loader';
 
 type Params = { id: string };
 
@@ -24,7 +25,7 @@ const PokemonsDetail: FunctionComponent<RouteComponentProps<Params>> = ({ match 
                         <div className="card hoverable">
                             <div className="card-image">
                                 <img src={pokemon.picture} alt={pokemon.name} style={{ width: '250px', margin: '0 auto' }} />
-                                <Link to={`/pokemons/edit/${pokemon.id}`} className="btn btn-floating halfway-fab waves-effect waves-light">
+                                <Link to={`/pokemon/edit/${pokemon.id}`} className="btn btn-floating halfway-fab waves-effect waves-light">
                                     <i className="material-icons">edit</i>
                                 </Link>
                             </div>
@@ -66,7 +67,7 @@ const PokemonsDetail: FunctionComponent<RouteComponentProps<Params>> = ({ match 
                     </div>
                 </div>
             ) : (
-                <h4 className="center">Aucun pokémon à afficher !</h4>
+                <h4 className="center"><Loader /></h4>
             )}
         </div>
     );
