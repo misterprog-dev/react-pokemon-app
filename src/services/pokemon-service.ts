@@ -4,20 +4,20 @@ export default class PokemonService {
     static baseURL: string = 'http://localhost:3001/pokemons';
 
     static getPokemons(): Promise<Pokemon[]> {
-        return fetch(PokemonService.baseURL)
+        return fetch(this.baseURL)
             .then(response => response.json())
             .catch(this.handleError);
     }
 
     static getPokemon(id: number): Promise<Pokemon | null> {
-        return fetch(`${PokemonService.baseURL}/${id}`)
+        return fetch(`${this.baseURL}/${id}`)
             .then(response => response.json())
             .then(data => this.isEmpty(data) ? null : data)
             .catch(this.handleError);
     }
 
     static updatePokemon(pokemon: Pokemon): Promise<Pokemon> {
-        return fetch(`${PokemonService.baseURL}/${pokemon.id}`, {
+        return fetch(`${this.baseURL}/${pokemon.id}`, {
             method: 'PUT',
             body: JSON.stringify(pokemon),
             headers: {
@@ -31,7 +31,7 @@ export default class PokemonService {
     static createPokemon(pokemon: Pokemon): Promise<Pokemon> {
         delete pokemon.created;
 
-        return fetch(`${PokemonService.baseURL}/`, {
+        return fetch(`${this.baseURL}/`, {
             method: 'POST',
             body: JSON.stringify(pokemon),
             headers: {
@@ -43,7 +43,7 @@ export default class PokemonService {
     }
 
     static deletePokemon(pokemon: Pokemon): Promise<{}> {
-        return fetch(`${PokemonService.baseURL}/${pokemon.id}`, {
+        return fetch(`${this.baseURL}/${pokemon.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ export default class PokemonService {
     }
 
     static searchPokemon(term: string): Promise<Pokemon[]> {
-        return fetch(`${PokemonService.baseURL}?q=${term}`)
+        return fetch(`${this.baseURL}?q=${term}`)
         .then(response => response.json())
         .catch(this.handleError);
     }
