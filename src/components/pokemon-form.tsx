@@ -151,7 +151,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }, { isEditForm }) => {
     }
 
     const createPokemon = () => {
-        PokemonService.createPokemon(pokemon).then(() => history.push("/pokemons/"));
+        PokemonService.addPokemon(pokemon).then(() => history.push("/pokemons/"));
     }
 
     const updatePokemon = () => {
@@ -208,7 +208,7 @@ const PokemonForm: FunctionComponent<Props> = ({ pokemon }, { isEditForm }) => {
                                     </div>
                                     <div className="form-group col s4">
                                         <label htmlFor="cp">Dégâts</label>
-                                        <input id="cp" name="hp" type="number" className="form-control" value={form.cp.value} onChange={e => handleInputChange(e)}></input>
+                                        <input id="cp" name="cp" type="number" className="form-control" value={form.cp.value} onChange={e => handleInputChange(e)}></input>
                                         {
                                             form.cp.error &&
                                             <div className="card-panel red accent-1">{form.cp.error}</div>
